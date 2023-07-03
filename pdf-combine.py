@@ -219,10 +219,12 @@ if __name__ == "__main__":
     if format not in formats:
         sys.exit("No output format selected")
 
-    sizes = ["fit", "real"]
-    size = easygui.choicebox(msg="Select the final fit of each page", choices=sizes)
-    if size not in sizes:
-        sys.exit("No output size selected")
+    size = ""
+    if format != "slides":
+        sizes = ["fit", "real"]
+        size = easygui.choicebox(msg="Select the final fit of each page", choices=sizes)
+        if size not in sizes:
+            sys.exit("No output size selected")
 
     writer = PdfWriter()
     pdf = create_pdf(pdfs, format, size == "fit", writer)
